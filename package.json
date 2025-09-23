@@ -1,0 +1,16 @@
+{
+  "name": "audit-event-consumer-cache",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "kafkajs": "^2.2.4"
+  }
+}
