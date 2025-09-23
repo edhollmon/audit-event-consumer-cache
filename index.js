@@ -36,6 +36,8 @@ await consumer.run({
     console.log(event)
 
     // Send to cache
-    client.rPush(`${cacheKeyPrefix}${event?.tenantId}`, JSON.stringify(event));
+    const key = `${cacheKeyPrefix}${event?.tenantId}`
+    client.rPush(key, JSON.stringify(event));
+    client.expire(key, 300)
   },
 })
