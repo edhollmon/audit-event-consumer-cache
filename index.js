@@ -37,7 +37,9 @@ await consumer.run({
 
     // Send to cache
     const key = `${cacheKeyPrefix}${event?.tenantId}`
-    client.rPush(key, JSON.stringify(event));
-    client.expire(key, 300)
+    client.multi()
+        .lPush(key, JSON.stringify(event))
+        .lTrim(key, 0, 25)
+        .exec();
   },
 })
