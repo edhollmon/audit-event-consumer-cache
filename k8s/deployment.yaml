@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: audit-event-consumer-cache-deployment
+  labels:
+    app: audit-event-consumer-cache
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: audit-event-consumer-cache
+  template:
+    metadata:
+      labels:
+        app: audit-event-consumer-cache
+    spec:
+      containers:
+      - name: audit-event-consumer-cache
+        image: ehollmon/audit-event-consumer-cache:1.0
