@@ -3,7 +3,7 @@ import { createClient } from 'redis';
 import 'dotenv/config';
 
 const clientId = 'audit-event-consumer-cache'
-const brokers = ['localhost:9092']
+const brokers = [process.env.KAFKA_BROKER || 'kafka:9092' || 'localhost:9092']
 const groupId = 'audit-event-cache';
 const topic = 'audit-event-topic';
 const cacheKeyPrefix = 'events:tenant:'
