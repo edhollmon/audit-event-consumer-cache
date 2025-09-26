@@ -9,7 +9,9 @@ const topic = 'audit-event-topic';
 const cacheKeyPrefix = 'events:tenant:'
 
 // Setup Redis
-const client = createClient();
+const client = createClient({
+  url: process.env.REDIS_URL || 'redis://redis:6379'
+});
 client.on('error', err => console.log('Redis Client Error', err));
 await client.connect();
 
@@ -37,7 +39,7 @@ await consumer.run({
 
     // Send to cache
     const key = `${cacheKeyPrefix}${event?.tenantId}`
-    client.multi()
+    await client.multi()
         .lPush(key, JSON.stringify(event))
         .lTrim(key, 0, 25)
         .exec();

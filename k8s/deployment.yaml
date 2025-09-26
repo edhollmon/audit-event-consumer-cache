@@ -16,7 +16,9 @@ spec:
     spec:
       containers:
       - name: audit-event-consumer-cache
-        image: ehollmon/audit-event-consumer-cache:1.1
+        image: ehollmon/audit-event-consumer-cache:1.2
         env:
         - name: KAFKA_BROKER
           value: "kafka:9092"
+        - name: REDIS_URL
+          value: "redis://redis:6379"
